@@ -3,60 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HumanitAI CIC | The 4thSpace</title>
+    <title>HumanitAI CIC | Preventative Human Infrastructure</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <style>
-        /* Modern Ultra-Minimalist Overrides */
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&display=swap');
-        
-        body { font-family: 'Space Grotesk', sans-serif; cursor: crosshair; }
-        
-        .hero h1 { font-size: 8vw; line-height: 0.9; }
-        .reveal { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-        
-        .sauna-glow {
-            position: absolute; width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
-            pointer-events: none; z-index: -1;
-        }
-    </style>
 </head>
 <body>
     <div class="sauna-glow"></div>
     <div class="container">
         <nav>
-            <div class="logo">H-AI</div>
+            <div class="logo">
+                <img src="logo.png" alt="HumanitAI" style="height: 40px; margin-right: 15px;">
+                <span>HumanitAI</span>
+            </div>
             <div class="nav-links">
                 <a href="#sauna">HEAT_CIRCUIT</a>
-                <a href="#data">INTEL_LAYER</a>
+                <a href="#logic">INTEL_LAYER</a>
             </div>
         </nav>
 
         <section class="hero">
             <h1 class="reveal">HUMANITAI</h1>
-            <p class="hero-sub" style="opacity: 0;">RE-ENGINEERING HUMAN RESILIENCE. <br>BEYOND WELLNESS. INTO INFRASTRUCTURE.</p>
-            <div class="cta-button" style="opacity: 0; transform: translateY(20px);">SECURE_MEMBERSHIP</div>
+            <p class="hero-sub">RE-ENGINEERING HUMAN RESILIENCE. <br>BEYOND WELLNESS. INTO INFRASTRUCTURE.</p>
+            <a href="mailto:contact@humanitai.org" class="cta-button">SECURE_MEMBERSHIP</a>
         </section>
 
-        <section id="sauna" class="pillar-card" style="margin-top: 10vh;">
-            <h3>01 // THE HEAT CIRCUIT</h3>
-            <p>High-thermal nervous system recalibration. Thermal-stress resilience for the 2026 Reset.</p>
-        </section>
+        <div class="grid-layout">
+            <section id="sauna" class="pillar-card">
+                <div class="pillar-num">01</div>
+                <h3>THE HEAT CIRCUIT</h3>
+                <p>Nervous system recalibration via high-thermal resilience protocols. The 4thSpace core.</p>
+            </section>
+            <section id="logic" class="pillar-card">
+                <div class="pillar-num">02</div>
+                <h3>INTEL LAYER</h3>
+                <p>Anonymized community health signals powering preventative social infrastructure.</p>
+            </section>
+        </div>
     </div>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
+        gsap.from(".reveal", { y: 100, opacity: 0, duration: 1.5, ease: "expo.out" });
+        gsap.from(".hero-sub", { opacity: 0, delay: 0.5, duration: 1 });
+        gsap.from(".cta-button", { opacity: 0, y: 20, delay: 0.8, duration: 1 });
         
-        // World-Class Entry Sequence
-        gsap.to(".reveal", { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", duration: 1.5, ease: "expo.out" });
-        gsap.to(".hero-sub", { opacity: 1, y: -10, delay: 0.5, duration: 1 });
-        gsap.to(".cta-button", { opacity: 1, y: 0, delay: 0.8, duration: 1 });
-        
-        // Interactive Glow (Mouse Tracking)
         window.addEventListener("mousemove", (e) => {
-            gsap.to(".sauna-glow", { x: e.clientX - 200, y: e.clientY - 200, duration: 1, ease: "power2.out" });
+            gsap.to(".sauna-glow", { 
+                x: e.clientX - 200, 
+                y: e.clientY - 200, 
+                duration: 1.5, 
+                ease: "power3.out" 
+            });
         });
     </script>
 </body>
