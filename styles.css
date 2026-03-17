@@ -79,3 +79,5 @@ h2 { font-size: clamp(32px, 6vw, 64px); font-weight: 700; letter-spacing: -0.04e
     .footer-cta { padding: 100px 0; }
     .huge-btn { font-size: 40px; }
 }
+.p-item { display: flex; align-items: center; }
+.p-item i { width: 24px; height: 24px; color: var(--gold); margin-right: 12px; stroke-width: 1.5px; }
