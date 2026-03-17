@@ -1,0 +1,118 @@
+:root {
+    --gold: #D4AF37;
+    --black: #0A0A0A;
+    --dark-grey: #1A1A1A;
+    --white: #F5F5F5;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero {
+    padding: 8rem 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: -3px;
+    background: linear-gradient(to bottom, var(--gold), #886B24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    opacity: 0.7;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.pillar-card {
+    padding: 3rem;
+    background: var(--dark-grey);
+    border: 1px solid #333;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+}
+
+.pillar-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+}
+
+.pillar-card h3 {
+    color: var(--gold);
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 2rem;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background: var(--white);
+}
+
+.sauna-section {
+    padding: 6rem 0;
+    border-top: 1px solid #333;
+    text-align: center;
+}
+
+.sauna-section h2 {
+    color: var(--gold);
+    font-size: 2.5rem;
+}
+
+footer {
+    padding: 4rem 0;
+    text-align: center;
+    border-top: 1px solid #333;
+    font-size: 0.9rem;
+    opacity: 0.5;
+}

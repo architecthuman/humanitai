@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HumanitAI CIC | The 4thSpace</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* Modern Ultra-Minimalist Overrides */
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&display=swap');
+        
+        body { font-family: 'Space Grotesk', sans-serif; cursor: crosshair; }
+        
+        .hero h1 { font-size: 8vw; line-height: 0.9; }
+        .reveal { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        
+        .sauna-glow {
+            position: absolute; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+            pointer-events: none; z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="sauna-glow"></div>
+    <div class="container">
+        <nav>
+            <div class="logo">H-AI</div>
+            <div class="nav-links">
+                <a href="#sauna">HEAT_CIRCUIT</a>
+                <a href="#data">INTEL_LAYER</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1 class="reveal">HUMANITAI</h1>
+            <p class="hero-sub" style="opacity: 0;">RE-ENGINEERING HUMAN RESILIENCE. <br>BEYOND WELLNESS. INTO INFRASTRUCTURE.</p>
+            <div class="cta-button" style="opacity: 0; transform: translateY(20px);">SECURE_MEMBERSHIP</div>
+        </section>
+
+        <section id="sauna" class="pillar-card" style="margin-top: 10vh;">
+            <h3>01 // THE HEAT CIRCUIT</h3>
+            <p>High-thermal nervous system recalibration. Thermal-stress resilience for the 2026 Reset.</p>
+        </section>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // World-Class Entry Sequence
+        gsap.to(".reveal", { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", duration: 1.5, ease: "expo.out" });
+        gsap.to(".hero-sub", { opacity: 1, y: -10, delay: 0.5, duration: 1 });
+        gsap.to(".cta-button", { opacity: 1, y: 0, delay: 0.8, duration: 1 });
+        
+        // Interactive Glow (Mouse Tracking)
+        window.addEventListener("mousemove", (e) => {
+            gsap.to(".sauna-glow", { x: e.clientX - 200, y: e.clientY - 200, duration: 1, ease: "power2.out" });
+        });
+    </script>
+</body>
+</html>
