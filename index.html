@@ -3,57 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HumanitAI | Future Social Infrastructure</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <title>HumanitAI — Human Infrastructure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --fg: #ffffff;
+            --accent: #0071e3;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --font-main: 'Inter', -apple-system, sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --glow-color: rgba(0, 113, 227, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Thermal Glow Cursor */
+        #glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(0,0,0,0.5);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 300px;
+            grid-gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: left;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .card p {
+            color: #999;
+            font-size: 1rem;
+            line-height: 1.4;
+            max-width: 280px;
+        }
+
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+        .span-4 { grid-column: span 4; }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .span-3, .span-4 { grid-column: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: auto;
+                padding: 20px;
+            }
+            .span-2, .span-3, .span-4 { grid-column: span 1; }
+            .hero h1 { font-size: clamp(3.5rem, 12vw, 5rem); }
+            .card { min-height: 240px; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-button {
+            margin-top: 40px;
+            padding: 16px 32px;
+            background: #fff;
+            color: #000;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+    </style>
 </head>
 <body>
+
+    <div id="glow"></div>
+
     <nav>
-        <div class="logo">HUMANITAI<span>.</span></div>
-        <div class="menu-trigger">MENU</div>
+        <div class="logo">HUMANITAI</div>
+        <div>
+            <a href="mailto:contact@humanitai.org" style="color:white; text-decoration:none; font-size: 0.9rem; opacity: 0.7;">Contact</a>
+        </div>
     </nav>
 
-    <main>
-        <section class="hero" style="background-image: url('hero.png'); background-size: cover; background-position: center;">
-            <div class="glass-overlay">
-                <h1 class="reveal">Rebuilding Human Connection.</h1>
-                <p class="hero-sub">Preventative human infrastructure for a disconnected world.</p>
-                <div class="cta-stack">
-                    <a href="mailto:contact@humanitai.org" class="btn-primary">GET INVOLVED</a>
-                </div>
+    <section class="hero">
+        <h1 class="reveal">Built for<br>Humans.</h1>
+        <p class="reveal">Preventative human infrastructure for a disconnected world. Engineering resilience, restoring connection.</p>
+        <a href="#pillars" class="cta-button reveal">Explore Pillars</a>
+    </section>
+
+    <section id="pillars">
+        <div class="bento-grid">
+            <div class="card span-2 reveal" style="grid-row: span 2; justify-content: flex-start; background: linear-gradient(135deg, rgba(0,113,227,0.1), transparent);">
+                <h3>Wellness</h3>
+                <p>Radical nervous-system recalibration and preventative health architecture for the modern human.</p>
             </div>
-        </section>
-
-        <section class="section">
-            <span class="label">01 // THE MISSION</span>
-            <h2>Integrated Resilience.</h2>
-            <div class="bento-grid">
-                <div class="bento-item span-4 tall" style="background-image: url('mobility.png'); background-size: contain; background-repeat: no-repeat; background-position: right bottom;">
-                    <h3>Movement & Mobility</h3>
-                    <p>Restoring autonomy through adaptive physical activation.</p>
-                </div>
-                <div class="bento-item span-2" style="background-image: url('ai.png'); background-size: 50%; background-repeat: no-repeat; background-position: center;">
-                    <h3>Ethical AI</h3>
-                    <p>Support that protects.</p>
-                </div>
+            <div class="card reveal">
+                <h3>Mobility</h3>
+                <p>Restoring autonomy through adaptive physical activation.</p>
             </div>
-        </section>
-
-        <section class="sauna-section">
-            <span class="label">02 // THE CORE</span>
-            <h2>The Heat Circuit.</h2>
-            <p>Radical nervous-system recalibration.</p>
-        </section>
-    </main>
-
-    <footer>
-        &copy; 2026 HUMANITAI CIC.
-    </footer>
+            <div class="card reveal">
+                <h3>Regulation</h3>
+                <p>Mastering internal states through precise physiological feedback.</p>
+            </div>
+            <div class="card reveal">
+                <h3>Social</h3>
+                <p>Architecting environments for authentic human bonding.</p>
+            </div>
+            <div class="card reveal">
+                <h3>Life Skills</h3>
+                <p>Essential intelligence for the modern era.</p>
+            </div>
+            <div class="card span-2 reveal">
+                <h3>AI Wellness</h3>
+                <p>Healthy boundaries and synergistic workflows with machine intelligence.</p>
+            </div>
+            <div class="card reveal">
+                <h3>AI Companion</h3>
+                <p>Ethical support designed to empower the individual.</p>
+            </div>
+            <div class="card span-4 reveal" style="background: rgba(255,255,255,0.03);">
+                <h3>Insights</h3>
+                <p>Data-driven wisdom for human optimization. Understanding the self through metrics.</p>
+            </div>
+        </div>
+    </section>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.from(".reveal", { opacity: 0, y: 30, duration: 1.2, ease: "expo.out" });
+        // Thermal Glow Mouse Tracking
+        const glow = document.getElementById('glow');
+        window.addEventListener('mousemove', (e) => {
+            glow.style.opacity = '1';
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Apple-style staggered delay
+        revealElements.forEach((el, i) => {
+            el.style.transitionDelay = `${i * 0.1}s`;
+        });
     </script>
 </body>
 </html>
